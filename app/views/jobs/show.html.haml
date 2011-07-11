@@ -1,0 +1,25 @@
+%p#notice= notice
+
+%p
+  %b Titulo:
+  = @job.titulo
+%p
+  %b Name:
+  = @job.customer.name
+  
+%table
+  %thead
+    %tr
+      %th User
+      %th Date
+      %th Description
+  %tbody
+    - for history in @historys
+      %tr
+        %td= history.user
+        %td= history.created_at.strftime('%d/%m/%Y às %H:%M')
+        %td= simple_format(history.description)
+
+= link_to 'Edit', edit_job_path(@job)
+\|
+= link_to 'Back', jobs_path
